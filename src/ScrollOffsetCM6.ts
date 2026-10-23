@@ -32,13 +32,8 @@ function generateScrollOffsetCM6Plugin(calcRequiredOffset: (container: HTMLEleme
           if (!cursor) return ;
 
           if (this.switch) {
-            /**
-             * Can't use `lineHeight` because of multiple line paragraph
-             * But cursorHeight is less then lineHeight about 5px
-             * So add this 5px;
-             */
-            const cursorHeight = cursor.bottom - cursor.top + 5
-            const requiredOffset = calcRequiredOffset(view.dom, cursorHeight)
+            const cursorHeight = cursor.bottom - cursor.top
+            const requiredOffset = calcRequiredOffset(view.scrollDOM, cursorHeight)
 
             this.margin = requiredOffset;
           } else {

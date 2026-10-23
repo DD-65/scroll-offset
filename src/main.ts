@@ -32,10 +32,16 @@ export default class ScrollOffset extends Plugin {
 
 	calcRequiredOffset = (container: HTMLElement, cursorHeight: number) => {
 		const {settings} = this;
-		const maxOffset = (container.offsetHeight - cursorHeight) / 2;
+		const editorHeight = container.clientHeight;
+		const codeMirrorMargin = 5;
+		const tolerance = 8;
+		const maxOffset = Math.max(
+			0,
+			(editorHeight - cursorHeight - 2 * codeMirrorMargin - tolerance) / 2
+		);
 
 		let requiredOffset: number = settings.percentageMode
-			? container.offsetHeight * +settings.offset / 100
+			? editorHeight * +settings.offset / 100
 			: +settings.offset;
 	
 		requiredOffset = Math.min(requiredOffset, maxOffset);
