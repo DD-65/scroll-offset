@@ -32,9 +32,11 @@ export default class ScrollOffset extends Plugin {
 
 	calcRequiredOffset = (container: HTMLElement, cursorHeight: number) => {
 		const {settings} = this;
+		// Measure the visible area without borders or scrollbars.
 		const editorHeight = container.clientHeight;
 		const codeMirrorMargin = 5;
 		const tolerance = 8;
+		// Leave room for CodeMirror's margins and small cursor movements.
 		const maxOffset = Math.max(
 			0,
 			(editorHeight - cursorHeight - 2 * codeMirrorMargin - tolerance) / 2

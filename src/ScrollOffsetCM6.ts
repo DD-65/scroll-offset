@@ -32,6 +32,7 @@ function generateScrollOffsetCM6Plugin(calcRequiredOffset: (container: HTMLEleme
           if (!cursor) return ;
 
           if (this.switch) {
+            // Use the measured cursor height and actual scrolling area.
             const cursorHeight = cursor.bottom - cursor.top
             const requiredOffset = calcRequiredOffset(view.scrollDOM, cursorHeight)
 

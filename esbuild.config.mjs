@@ -54,6 +54,7 @@ try {
 	if (prod) {
 		await esbuild.build(options);
 	} else {
+		// Newer esbuild versions use a context for watch mode.
 		const context = await esbuild.context(options);
 		await context.watch();
 	}
